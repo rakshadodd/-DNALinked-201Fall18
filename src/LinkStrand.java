@@ -52,9 +52,8 @@ public class LinkStrand implements IDnaStrand {
 	@Override
 	public IDnaStrand append(String dna) {
 		// TODO Auto-generated method stub
-		Node x= new Node(dna);
 		myLast= myLast.next;
-		myLast=x;
+		myLast= new Node(dna);
 		myAppends++;
 		mySize+= dna.length();
 		return this;

@@ -16,12 +16,13 @@ public class LinkStrand implements IDnaStrand {
 	   private int myLocalIndex;
 	   private Node myCurrent;
 	
+	   
+	public LinkStrand(String s) {
+		initialize(s);
+	}
 	public LinkStrand() {
 		this("");
 		
-	}
-	public LinkStrand(String s) {
-		initialize(s);
 	}
 	
 	@Override
@@ -56,9 +57,8 @@ public class LinkStrand implements IDnaStrand {
 		//Node temp= myLast;
 		//myLast= next;
 		//temp.next= next;
-		if (myLast.next!= null) {
-			myLast.next= new Node(dna); 
-			myLast= myLast.next; }
+		myLast.next= new Node(dna); 
+		myLast= myLast.next; 
 		myAppends++;
 		mySize+= dna.length();
 		return this;
@@ -113,11 +113,11 @@ public class LinkStrand implements IDnaStrand {
 	}
 	
 	public String toString() {
-		StringBuilder s= new StringBuilder();
-		myLast= myFirst;
-		while (myLast!= null) {
-			s.append(myLast.info);
-			myLast= myLast.next;
+		StringBuilderStrand s= new StringBuilderStrand();
+		Node n= myFirst;
+		while (n!= null) {
+			s.append(n.info);
+			n= n.next;
 		}
 		return s.toString();
 		}

@@ -1,47 +1,57 @@
 
+/**
+ * @author Raksha Doddabele
+ * Most efficient implementation of IDNAStrand. 
+ * Uses LinkedLists to represent genomic/DNA data.
+ */
 public class LinkStrand implements IDnaStrand {
 
 	private class Node {
-	   	String info;
-	   	Node next;
-	   	public Node(String s) {
-	      	info = s;
-	      	next = null;
-	   	}
-	   }
-	   private Node myFirst, myLast;
-	   private long mySize;
-	   private int myAppends;
-	   private int myIndex;
-	   private int myLocalIndex;
-	   private Node myCurrent;
-	
-	   
+		String info;
+		Node next;
+		public Node(String s) {
+			info = s;
+			next = null;
+		}
+	}
+	private Node myFirst, myLast;
+	private long mySize;
+	private int myAppends;
+	private int myIndex;
+	private int myLocalIndex;
+	private Node myCurrent;
+
+	public LinkStrand() {
+		this("");
+	}
+
+	/**
+	 * Initialize this strand so that it represents the value of source.
+	 * @param s is the source of cgat data for this strand
+	 */
 	public LinkStrand(String s) {
 		initialize(s);
 	}
-	public LinkStrand() {
-		this("");
-		
-	}
-	
+
 	@Override
 	public long size() {
 		// TODO Auto-generated method stub
 		return mySize;
-		
+
 	}
 
 	@Override
 	public void initialize(String source) {
 		// TODO Auto-generated method stub
-		myFirst= new Node(source);
-		myLast=myFirst;
-		myAppends=0;
-		mySize=source.length();
-		myIndex=0;
-		myLocalIndex= 0;
-		myCurrent= myFirst;
+		if (source != null) {
+			myFirst= new Node(source);
+			myLast=myFirst;
+			myAppends=0;
+			mySize=source.length();
+			myIndex=0;
+			myLocalIndex= 0;
+			myCurrent= myFirst;
+		}
 	}
 
 	@Override
@@ -53,10 +63,12 @@ public class LinkStrand implements IDnaStrand {
 	@Override
 	public IDnaStrand append(String dna) {
 		// TODO Auto-generated method stub
-		myLast.next= new Node(dna); 
-		myLast= myLast.next; 
-		myAppends++;
-		mySize+= dna.length();
+		if (dna!= null) {
+			myLast.next= new Node(dna); 
+			myLast= myLast.next; 
+			myAppends++;
+			mySize+= dna.length();
+		}
 		return this;
 	}
 
@@ -68,19 +80,19 @@ public class LinkStrand implements IDnaStrand {
 		Node previous = new Node(null);
 		Node next= new Node(null);
 		while (current != null) {
-		    next = current.next;
-		    current.next = previous;
-		    previous = current;
-		    current = next;
-		    
-		    StringBuilder reversestr= new StringBuilder(previous.info);
-		    reversestr= reversestr.reverse();
-		    if (previous.info != null) {
-		    	copy.append(reversestr.toString());
-		    }
+			next = current.next;
+			current.next = previous;
+			previous = current;
+			current = next;
+
+			StringBuilder reversestr= new StringBuilder(previous.info);
+			reversestr= reversestr.reverse();
+			if (previous.info != null) {
+				copy.append(reversestr.toString());
+			}
 		}
 		return copy;
-		
+
 	}
 
 	@Override
@@ -110,7 +122,7 @@ public class LinkStrand implements IDnaStrand {
 		}
 		return myCurrent.info.charAt(myLocalIndex);
 	}
-	
+
 	public String toString() {
 		StringBuilderStrand s= new StringBuilderStrand();
 		Node n= myFirst;
@@ -119,8 +131,8 @@ public class LinkStrand implements IDnaStrand {
 			n= n.next;
 		}
 		return s.toString();
-		}
 	}
-	
+}
+
 
 

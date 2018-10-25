@@ -75,10 +75,10 @@ public class LinkStrand implements IDnaStrand {
 	@Override
 	public IDnaStrand reverse() {
 		// TODO Auto-generated method stub
-		LinkStrand copy= new LinkStrand();
+		/*LinkStrand copy= new LinkStrand();
 		Node current= myFirst;
 		Node previous = new Node(null);
-		Node next= new Node("");
+		Node next= new Node(null);
 		while (current != null) {
 			next = current.next;
 			current.next = previous;
@@ -93,8 +93,25 @@ public class LinkStrand implements IDnaStrand {
 		
 			
 		return copy;
+		*/
+		LinkStrand plz = new LinkStrand();
+		Node fake = this.myFirst;
+		Node end = null;
+		while (fake!= null) {
+			StringBuilder temporaryactionitem = new StringBuilder(fake.info);
+			Node frontface = new Node(temporaryactionitem.reverse().toString());
+			frontface.next = end;
+			end = frontface;
+			fake = fake.next;
+		}
+		while (end!=null) {
+			plz.append(end.info);
+			end = end.next;
+		}
+		return plz;
+		}
 
-	}
+	
 
 	@Override
 	public int getAppendCount() {

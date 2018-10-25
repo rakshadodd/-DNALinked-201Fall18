@@ -77,7 +77,7 @@ public class LinkStrand implements IDnaStrand {
 		// TODO Auto-generated method stub
 		LinkStrand copy= new LinkStrand();
 		Node current= myFirst;
-		Node previous = new Node(null);
+		Node previous = new Node(myLast.info);
 		Node next= new Node(null);
 		while (current != null) {
 			next = current.next;
@@ -87,9 +87,8 @@ public class LinkStrand implements IDnaStrand {
 
 			StringBuilder reversestr= new StringBuilder(previous.info);
 			reversestr= reversestr.reverse();
-			if (previous.info != null) {
-				copy.append(reversestr.toString());
-			}
+			copy.append(reversestr.toString());
+			
 		}
 		return copy;
 

@@ -17,6 +17,9 @@ public class CodonProfiler {
 		int[] ret = new int[codons.length];		
 		
 		for(int k=0; k < strand.size(); k+=3) {
+			if ((strand.size()- k)< 3) {
+				break;
+			}
 			String cod= strand.toString().substring(k, k+3);
 			if (!map.containsKey(cod)) {
 				map.put(cod, 1);

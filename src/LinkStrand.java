@@ -77,7 +77,7 @@ public class LinkStrand implements IDnaStrand {
 		// TODO Auto-generated method stub
 		LinkStrand copy= new LinkStrand();
 		Node current= myFirst;
-		Node previous = null;
+		Node previous = new Node(myFirst.info);
 		Node next= new Node(null);
 		while (current != null) {
 			next = current.next;

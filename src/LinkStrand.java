@@ -72,7 +72,7 @@ public class LinkStrand implements IDnaStrand {
 		    current.next = previous;
 		    previous = current;
 		    current = next;
-		    if (previous!= null) {
+		    if (previous.info != null) {
 		    	StringBuilder reversestr= new StringBuilder(previous.info.toString());
 		    	reversestr= reversestr.reverse();
 		    	copy.append(reversestr.toString());

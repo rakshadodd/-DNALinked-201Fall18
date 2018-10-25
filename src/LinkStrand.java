@@ -53,10 +53,6 @@ public class LinkStrand implements IDnaStrand {
 	@Override
 	public IDnaStrand append(String dna) {
 		// TODO Auto-generated method stub
-		//Node next= new Node(dna);
-		//Node temp= myLast;
-		//myLast= next;
-		//temp.next= next;
 		myLast.next= new Node(dna); 
 		myLast= myLast.next; 
 		myAppends++;
@@ -71,7 +67,7 @@ public class LinkStrand implements IDnaStrand {
 		Node current= myFirst;
 		Node previous = new Node(null);
 		Node next= new Node(null);
-		while (current != null) {
+		while (current.next != null) {
 		    next = current.next;
 		    current.next = previous;
 		    previous = current;
